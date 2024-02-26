@@ -1,0 +1,43 @@
+<form [formGroup]="myforms" (submit)="addRoles()" class="forms">
+  <h4>Add Purchase</h4>
+
+  <mat-icon
+    (click)="onClose()"
+    class="close"
+    aria-hidden="false"
+    aria-label="Example home icon"
+    fontIcon="close"
+  ></mat-icon>
+
+  <!-- select field* -->
+  <mat-form-field>
+    <mat-label>Plants</mat-label>
+    <mat-select formControlName="p_id">
+      <mat-option *ngFor="let plant of allPlants" value="{{ plant.p_id }}">
+        {{ plant.p_name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Vendors</mat-label>
+    <mat-select formControlName="v_id">
+      <mat-option *ngFor="let ventor of allVentors" value="{{ ventor.v_id }}">
+        {{ ventor.v_name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Required Date</mat-label>
+    <input
+      formControlName="pu_beforedate"
+      matInput
+      [min]="minDate"
+      [matDatepicker]="picker"
+    />
+    <!-- <mat-hint>DD/MM/YYYY</mat-hint> -->
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <button class="add" type="submit" mat-raised-button>Add</button>
+</form>

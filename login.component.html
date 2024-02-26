@@ -1,0 +1,41 @@
+<div class="forms1">
+  <form [formGroup]="forms" (submit)="onsubmit()"  class="top">
+    <mat-form-field>
+      <div class="input1">
+        <span>
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="person"
+          ></mat-icon>
+        </span>
+        <input
+          formControlName="username"
+          placeholder="Username"
+          matInput
+          type="text"
+        />
+      </div>
+    </mat-form-field>
+
+    <mat-form-field>
+      <div class="input1">
+        <span>
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="lock"
+          ></mat-icon>
+        </span>
+        <input
+          formControlName="password"
+          placeholder="Password"
+          matInput
+          type="text"
+        />
+      </div>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary">Submit</button>
+  </form>
+</div>

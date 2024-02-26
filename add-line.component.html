@@ -1,0 +1,61 @@
+<div div class="line">
+  <form class="formss" [formGroup]="myforms">
+    <mat-form-field>
+      <mat-label>Purchase Number</mat-label>
+      <mat-select formControlName="pu_id">
+        <mat-option
+          *ngFor="let purchase of allPurchase"
+          value="{{ purchase.pu_id }}"
+        >
+          {{ purchase.pu_number }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Items</mat-label>
+      <mat-select formControlName="i_id">
+        <mat-option *ngFor="let items of allItems" value="{{ items.i_id }}">
+          {{ items.i_name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <div class="input1">
+        <span> </span>
+        <input
+          formControlName="quantity"
+          placeholder="Quantity"
+          matInput
+          type="text"
+        />
+      </div>
+    </mat-form-field>
+    <button (click)="addTo()" mat-raised-button color="primary">Add</button>
+  </form>
+
+  <div *ngIf="dataSource.length > 0" class="table">
+    <table [dataSource]="dataSource" mat-table class="mat-elevation-z8">
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="items">
+        <th mat-header-cell *matHeaderCellDef>Items</th>
+        <td mat-cell *matCellDef="let element">{{ element?.i_id }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Quantity</th>
+        <td mat-cell *matCellDef="let element">{{ element?.quantity }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <button (click)="submitTo($event)" mat-raised-button color="primary">
+      Submit
+    </button>
+  </div>
+</div>
